@@ -1,0 +1,43 @@
+#Bài 2
+#Viết chương trình trả ra từ điển với key là các số trong #list, value là số lần xuất hiện của số trong list
+#my_list=[10, 21, 21, 40, 40, 52, 52, 1, 1, 2, 2, 2, 2, 11, 11, 11, 11, 25, 24, 24, 60, 40]
+while True:
+ z_phan_tu = input (" Hãy nhập độ dài chuỗi:")
+ if z_phan_tu!="":
+   try:
+     z_phan_tu=int(z_phan_tu)
+     if z_phan_tu>0:
+       acb=()
+       break;
+     else:
+       print ("Phải khác không và âm")
+     
+   except ValueError:
+        print("Một trong các giá trị bạn nhập vào không phải dạng số, vui lòng nhập lại!")
+ else:
+      print("Trường độ dài chuỗi cần có giá trị!")
+x_string = []
+i_string=1
+while i_string < z_phan_tu+1:
+  print ("Nhập số thứ",i_string,":" )
+  c_nhap = input ()
+  if c_nhap !="":
+    try:
+     c_nhap=int(c_nhap)
+     x_string.append (c_nhap)
+     y_string=x_string
+     i_string+=1
+    except ValueError:
+        print("Một trong các giá trị bạn nhập vào không phải dạng số, vui lòng nhập lại!")
+  else:
+      print("Cần nhập một giá trị!")
+
+print ("Chuỗi là", y_string)
+print ("Số lần xuất hiện của các số trong danh sách như sau:")
+i_dem ={}
+for i_kytu in y_string:
+  if i_kytu in i_dem:
+    i_dem [i_kytu] += 1
+  else:
+    i_dem [i_kytu] =1
+print (i_dem)
