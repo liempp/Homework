@@ -1,0 +1,33 @@
+# Bài 1
+#Hãy viết chương trình in ra các hình sau (dùng ký tự '*' #và ký tự space) với n là số dòng. Vd: n i= 4:
+m=4
+print ("Hình thứ 1:")
+for a_sao in range (1,m+1):
+  #chạy 1 vòng của i_sao, in ra 1 khoảng cách ở đằng trước
+  for b_sao in range (1, (m+1)-a_sao):
+   print (" ",end=" ")
+  #chạy x vòng của i_sao
+  for c_sao in range(1, a_sao+1):
+   print("*", end=" ")
+  print()
+print()
+print ("Hình thứ 2:")
+n=4
+for i_sao in range (1,n+1):
+  #chạy 1 vòng của i_sao, in ra 1 khoảng cách ở đằng trước
+  for j_sao in range (1, (n+1)-i_sao):
+   print (" ",end=" ")
+  #chạy x vòng của i_sao
+  for k_sao in range(1, i_sao+1):
+   if k_sao <n:
+    print("*", end=" ")
+   else:
+    print("* * * * *", end=" ")
+  print()
+for b_sao in range (n, 1,-1):
+  for c_sao in range (n+1,1,-1):
+    print (" ",end= " ")
+  for d_sao in range(b_sao,1,-1):
+    print("*", end=" ")
+  print()
+print()
