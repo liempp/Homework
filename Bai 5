@@ -1,0 +1,53 @@
+#Bài 5:
+#Cho list A chứa các số nguyên đã sắp xếp theo thứ tự tăng dần.
+#Vd A = [3, 6, 7, 9, 11, 12] và một số nguyên sum. Tìm tất cả các cặp số (a,b) trong mảng A có tổng bằng sum
+#vd ở đây nếu sum = 18 thì kết quả là [(7,11), (6,12)]. #Nếu không có cặp số nào thỏa mãn thì in ra list rỗng []
+while True:
+ i_phan_tu = (input (" Hãy nhập độ dài chuỗi:"))
+ d_sum = (input ("Nhập vào tổng"))
+ if (i_phan_tu!="") and (d_sum!=""):
+   try:
+     i_phan_tu=int(i_phan_tu)
+     d_sum=int(d_sum)
+     if i_phan_tu>0:
+       acb=()
+       break;
+     else:
+       print ("Độ dài chuỗi phải lớn hơn 0")
+     
+   except ValueError:
+        print("Một trong các giá trị bạn nhập vào không phải dạng số, vui lòng nhập lại!")
+ else:
+      print("Trường độ dài chuỗi và tổng cần có giá trị!")
+
+a_string = []
+b_string=1
+while b_string < i_phan_tu+1:
+  print ("Nhập số thứ",b_string,":" )
+  c_nhap = input ()
+  if c_nhap !="":
+    try:
+     c_nhap=int(c_nhap)
+     a_string.append (c_nhap)
+     b_string+=1
+    except ValueError:
+        print("Một trong các giá trị bạn nhập vào không phải dạng số, vui lòng nhập lại!")
+  else:
+      print("Cần nhập một giá trị!")
+print ("Chuỗi vừa nhập là", a_string )
+b_tuple=()
+c_tuple= ()
+c_string=[]
+d_string=[]
+for d_i in range (0,(i_phan_tu)):
+  for d_j in range ((i_phan_tu)-1, d_i,-1):
+   if a_string[d_i]+a_string[d_j]==d_sum:
+    b_tubple= (a_string[d_i],a_string[d_j])
+    c_string.append (b_tubple)
+    d_string=c_string
+  else:
+      c_tuple= ()
+if d_string != []:
+ print ("Các cặp số trong chuỗi có tổng bằng", d_sum,"là:", d_string)
+else:
+  print ("Không có cặp số nào phù hợp", d_string)
