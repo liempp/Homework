@@ -1,0 +1,15 @@
+#Bài 3:
+#Viết chương trình in ra thời gian đếm ngược đến XMas 2021 sau mỗi khoảng thời gian nhất định.
+from datetime import date
+from datetime import time
+from datetime import datetime
+import time
+
+t_ngay=datetime.fromisoformat("2021-12-25")
+t_today=datetime.today()
+while t_today < t_ngay:
+    t_dem_nguoc= t_ngay- t_today
+    print("Còn", t_dem_nguoc, "sẽ đến Noel")
+    time.sleep(5)
+else:
+  print("Noel đến rồi")
