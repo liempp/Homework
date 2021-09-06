@@ -31,3 +31,6 @@ for b_sao in range (n, 1,-1):
     print("*", end=" ")
   print()
 print()
+
+
+
