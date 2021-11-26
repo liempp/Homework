@@ -81,3 +81,5 @@ def count_char_type(string):
   return dict
 print('Đếm loại kí tự: ', count_char_type(string))
 
+
+
