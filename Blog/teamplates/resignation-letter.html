@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resignation</title>
+</head>
+<body>
+    <h1>Blogs Page</h1>
+    <ul>
+        <li><a href="/">Blogs</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/resignation">Resignation Letter</a></li>
+    </ul>
+    <h2>Resignation Letter</h2>
+    <p>Quickly create a file of resignation letter</p>
+
+    <form action="/resignation" method="POST">
+        <label>Fullname</label> <br>
+        <input type="text" name="fullname"><br>
+        <label>Reason</label><br>
+        <textarea type="text" name="reason" id="" cols="30" rows="10"></textarea><br>
+        <button type="submit">Create file</button><br>
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <div>
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %} {% endwith %}
+    </form><br>
+        <!-- <a href="static/{{ file }}">Download here</a> -->
+
+
+        {% if is_save %}
+            <p>File created! Click on the link to download the file and send it to your boss right away :) <a href="static/{{ file }}" download="static/{{ file }}">Download</a></p>
+        {% endif %}
+    
+  
+</body>
+</html>
