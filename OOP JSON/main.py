@@ -4,8 +4,8 @@ import csv
 import json
 
 current_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
-csv_file = os.path.join(current_dir, "bank_accounts.csv")
-json_file = os.path.join(current_dir, "bank_accounts.json")
+csv_file = os.path.join(current_dir, "data.csv")
+json_file = os.path.join(current_dir, "data.json")
 
 
 class BankAccount:
@@ -36,7 +36,21 @@ class BankAccount:
             raise ValueError("Số dư phải lớn hơn 0")
 
     def display(self):
-        print(f"| {self.account_number:9} | {self.account_name:15} | {self.balance:>15} |")
+        print(
+            f"| {self.account_number:9} | {self.account_name:15} | {self.balance:>15} |")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance - BankAccount.minimum_balance:
+            self.balance -= amount
+        else:
+            raise ValueError(
+                f"Số tiền phải lớn hơn 0 và không được vượt quá số dư hiện tại")
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+        else:
+            raise ValueError("Số tiền phải lớn hơn 0")
 
     @classmethod
     def from_csv(cls, csv_file):
@@ -48,30 +62,33 @@ class BankAccount:
             for account_number, account_name, balance in reader:
                 accounts.append(
                     cls(account_number, account_name, int(balance)))
-        return accounts                
+
+        return accounts
 
     @classmethod
     def from_json(cls, json_file):
         accounts = []
 
-        with open(json_file,'r') as file:
-            reader = json.loads(file.read())
-
-            for i in reader:
-               number, name, balance=i.values()
-               account=cls (number,name,balance)
-               accounts.append(account)
+        with open(json_file) as file:
+            reader = json.load(file)
+            for account_data in reader:
+                accounts.append(
+                    cls(account_data['account_number'], account_data['account_name'], int(account_data['balance'])))
 
         return accounts
 
 
-csv_accounts = BankAccount.from_csv(csv_file)
-json_accounts = BankAccount.from_json(json_file)
+if __name__ == "__main__":
+    csv_accounts = BankAccount.from_csv(csv_file)
 
-print(f"| {'Number':9} | {'Account Name':15} | {'Balance':15} |")
-print(f"|{'-' * 11}|{ '-' * 17 }|{'-' * 17}|")
-for account in json_accounts:
-  account.display()
+    print(f"| {'Number':9} | {'Account Name':15} | {'Balance':15} |")
+    print(f"|{'-' * 11}|{'-' * 17}|{'-' * 17}|")
+    for account in csv_accounts:
+        account.display()
 
-for account in csv_accounts:
-    account.display()
+    json_accounts = BankAccount.from_json(json_file)
+
+    print(f"| {'Number':9} | {'Account Name':15} | {'Balance':15} |")
+    print(f"|{'-' * 11}|{'-' * 17}|{'-' * 17}|")
+    for account in json_accounts:
+        account.display()
