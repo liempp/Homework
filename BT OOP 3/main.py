@@ -1,78 +1,83 @@
-class Customer:
-    def __init__(self,name, date_of_birth, email, phone):
-        self._name=name
-        self._date_of_birth=date_of_birth
-        self._email=email
-        self._phone=phone
-    @property
-    def name(self):
-        return self._name
-    @property
-    def date_of_birth(self):
-        return self._date_of_birth
-    @property
-    def email(self):
-        return self._email
-    @property
-    def phone(self):
-        return self._phone
-    def get_info(self):
-        print(self.name)
-        print(self.date_of_birth)
-        print(self.email)
-        print(self.phone)
-    
-class BankAccount():
-    minimum_balance = 50000
+# Bài Function - Chỉ số thống kê mô tả
+# Cách 1
+# import statistics
+# A = [7, 8, 9, 2, 10, 9, 9, 9, 9, 4, 5, 6, 1, 5, 6, 7, 8, 6, 1, 10]
+# mean =statistics.mean(A)
+# median=statistics.median(A)
+# mode=statistics.mode(A)
+# print('(','mean(A)','Median(A)','Mode(A)',')','==''(', mean,',', median,',','[', mode,']',')')
 
-    def __init__(self, account_number, name, date_of_birth, email, phone, balance=0):
-        self._owner= Customer(name, date_of_birth, email, phone)
-        self._account_number = account_number
-        self.balance = balance      # gọi @balance.setter
 
-    @property
-    def account_number(self):
-        return self._account_number
+# B=[4,4,5,4,5,5] 
+# mean =statistics.mean(B)
+# median=statistics.median(B)
+# mode=statistics.mode(B)
+# print('(','mean(B)','Median(B)','Mode(B)',')','==''(', mean,',', median,',','[', mode,']',')')
 
-    @property
-    def owner(self):
-        return self._owner
 
-    @property
-    def balance(self):
-        return self._balance
+# Cách 2
+A = [7, 8, 9, 2, 10, 9, 9, 9, 9, 4, 5, 6, 1, 5, 6, 7, 8, 6, 1, 10]
+def mean(A):
+  return sum(A)/len(A)
+mean=mean(A)
+# print (mean)
+def median(A):
+  A= sorted(A)
+  n=len(A)
+  if n % 2 == 1:
+      return A[n//2]
+  else:
+      i = n//2
+      return (A[i - 1] + A[i])/2
+median= median(A)
 
-    @balance.setter
-    def balance(self, balance):
-        if balance >= 0:
-            self._balance = balance
-        else:
-            raise ValueError("Số dư phải lớn hơn 0")
+def mode(A):
+    Amax = A[0]
+    for d in A:
+        if A.count(d) > A.count(Amax):
+            Amax = d
+    return Amax
+mode= mode(A)
+  
+print('(','mean(A)','median(A)','mode(A)',')','==''(', mean,',', median,',','[', mode,']',')')
 
-    def display(self):
-        print("Số tài khoản: "+ str(self.account_number))
-        print("Tên khách hàng: "+str(self.owner.name))
-        print("Ngày sinh : "+str(self.owner.date_of_birth))
-        print("Số Phone : "+str(self.owner.phone))
-        print("Email : "+str(self.owner.email))
-        print("Số dư tài khoản "+str(self.balance))
+B=[4,4,5,4,5,5]
+def mean(B):
+  return sum(B)/len(B)
+mean=mean(B)
+# print (mean)
+def median(B):
+  B= sorted(B)
+  n=len(B)
+  if n % 2 == 1:
+      return B[n//2]
+  else:
+      i = n//2
+      return (B[i - 1] + B[i])/2
+median= median(B)
 
-    def withdraw(self, amount):
-        if 0 < amount <= self.balance - BankAccount.minimum_balance:
-            self.balance -= amount
-        else:
-            raise ValueError(
-                f"Số tiền phải lớn hơn 0 và không được vượt quá số dư hiện tại")
+def mode(B):
+    Amax = B[0]
+    for d in A:
+        if B.count(d) > B.count(Amax):
+            Amax = d
+    return Amax
+mode= mode(B)
+  
+print('(','mean(B)','median(B)','mode(B)',')','==''(', mean,',', median,',','[', mode,']',')')
 
-    def deposit(self, amount):
-        if amount > 0:
-            self.balance += amount
-        else:
-            raise ValueError("Số tiền phải lớn hơn 0")
-class SavingAccount(BankAccount):
-    monthly_interest_rate=0.005
-    def calculate_interest(self):
-        return self.balance * SavingAccount.monthly_interest_rate
 
-my_account = BankAccount("88886666", "liempp", "20/12/1991", "liempham@gmail.com", "0917332821", 3_000_000_000_000)
-my_account.display()
+# bài 2: Function - Đếm loại ký tự
+dict={}
+string="Hello World! 123"
+
+alpha= sum(map(str.isalpha, string))
+upper= sum(map(str.isupper, string))
+lower= sum(map(str.islower, string))
+digit= sum(map(str.isdigit, string))
+
+def count_char_type(string):
+  dict= {"LETTERS":alpha, "CASE": {"UPPER CASE":upper, "LOWER CASE":lower}, "DIGITS":digit} 
+  return dict
+print('Đếm loại kí tự: ', count_char_type(string))
+
